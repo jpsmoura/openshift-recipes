@@ -1,16 +1,28 @@
 # Camel Spring Boot Config Map Example
 
-###CONFIG MAP
-oc create configmap demo --from-file=service.properties
-oc edit configmap demo
-oc describe configmap demo
+### Description
+The Simplest possible example that demonstrates usage of Camel Java DSL and Spring.
+It uses Kubernetes ConfigMap to pass the configuration to the docker container.
 
-oc rsh $(oc get pods -l component=fis-camel-spring-boot-demo --template '{{range .items}}{{.metadata.name}}{{end}}') cat /etc/config/service.properties
 This quickstart run Apache Camel in a standalone Java Spring Boot container.
 It is based on Fuse 6.2 hence Camel 2.15.1 and corresponding Spring version.
 
+### Run locally
 
+    mvn clean install exec:java
 
+### Build the project
+
+    oc new-project spring-boot-configmap
+
+    oc create configmap demo --from-file=service.properties
+    oc describe configmap demo
+    oc edit configmap demo
+
+    mvn clean install -s configuration/settings.xml
+    mvn -Pf8-local-deploy -s configuration/settings.xml
+
+    oc rsh $(oc get pods -l component=fis-camel-spring-boot-demo --template '{{range .items}}{{.metadata.name}}{{end}}') cat /etc/config/service.properties
 
 ### Option 1: Building (with hawt-app-maven-plugin) and running locally
 
