@@ -13,6 +13,7 @@
         <module>hello-world</module>
         <module>mq-client-cdi</module>
         <module>mq-client-spring</module>
+        <module>mq-client-ssl</module>
         <module>spring-boot</module>
         <module>spring-boot-configmap</module>
     </modules>
