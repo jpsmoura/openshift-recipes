@@ -7,12 +7,14 @@
     <artifactId>k8s4j</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
-    <name>Kubernetes for Java Developers Cookbook</name>
+    <name>Kubernetes for Java Recipes</name>
 
     <modules>
         <module>hello-world</module>
         <module>mq-client-cdi</module>
         <module>mq-client-spring</module>
+        <module>spring-boot</module>
+        <module>spring-boot-configmap</module>
     </modules>
 
 </project>

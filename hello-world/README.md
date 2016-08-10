@@ -1,7 +1,7 @@
 # Camel and CDI
 
 ### Description
-Simplest possible example that demonstrates usage of Camel Java DSL and CDI
+The Simplest possible example that demonstrates usage of Camel Java DSL and CDI
 
 
 ### Run locally
@@ -10,7 +10,7 @@ Simplest possible example that demonstrates usage of Camel Java DSL and CDI
 
 ### Build the project
 
-    oc new-project amq-demo
+    oc new-project hello-world
 
     mvn clean install -s configuration/settings.xml
     mvn -Pf8-local-deploy -s configuration/settings.xml
