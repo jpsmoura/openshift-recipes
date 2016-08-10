@@ -1,4 +1,1 @@
-# OpenShift 3 Recipes
-
-Hello world FIS
-
+# OpenShift Recipes, Tricks and Tips
