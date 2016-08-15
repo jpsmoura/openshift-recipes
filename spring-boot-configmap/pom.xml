@@ -16,7 +16,7 @@
 
     <!-- the version of the BOM, defining all the dependency versions -->
     <fuse.version>6.2.1.redhat-084</fuse.version>
-    <fabric8.version>2.2.0.redhat-079</fabric8.version>
+    <fabric8.version>2.2.100</fabric8.version>
     <docker.maven.plugin.version>0.13.6</docker.maven.plugin.version>
 
     <!-- Docker & Fabric8 Configs -->
@@ -60,6 +60,7 @@
             <type>pom</type>
             <scope>import</scope>
         </dependency>
+
 
     </dependencies>
   </dependencyManagement>
@@ -117,6 +118,39 @@
           <artifactId>spring-tx</artifactId>
           <version>${spring-version}</version>
       </dependency>
+
+    <!-- testing -->
+    <dependency>
+      <groupId>org.apache.camel</groupId>
+      <artifactId>camel-test-spring</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.jboss.arquillian.junit</groupId>
+      <artifactId>arquillian-junit-container</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>io.fabric8</groupId>
+      <artifactId>fabric8-arquillian</artifactId>
+      <scope>test</scope>
+    </dependency>
+
+    <!-- https://mvnrepository.com/artifact/io.fabric8.schemagenerator/kubernetes-model -->
+    <!--dependency>
+      <groupId>io.fabric8.schemagenerator</groupId>
+      <artifactId>kubernetes-model</artifactId>
+      <version>0.0.54</version>
+    </dependency-->
+    <!-- https://mvnrepository.com/artifact/io.fabric8/kubernetes-generator -->
+    <dependency>
+      <groupId>io.fabric8</groupId>
+      <artifactId>kubernetes-generator</artifactId>
+      <version>2.2.148</version>
+    </dependency>
+
+
+
   </dependencies>
 
   <build>
@@ -214,6 +248,33 @@
         <configuration>
           <mainClass>com.ofbizian.MyFatJarRouter</mainClass>
         </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-resources-plugin</artifactId>
+        <version>2.7</version>
+        <executions>
+          <execution>
+            <id>copy-resource-one</id>
+            <phase>install</phase>
+            <goals>
+              <goal>copy-resources</goal>
+            </goals>
+            <configuration>
+              <outputDirectory>${project.basedir}/kube</outputDirectory>
+              <resources>
+                <resource>
+                  <directory>${project.build.directory}/classes</directory>
+                  <includes>
+                    <include>*.json</include>
+                    <include>*.yml</include>
+                  </includes>
+                </resource>
+              </resources>
+            </configuration>
+          </execution>
+        </executions>
       </plugin>
     </plugins>
   </build>
